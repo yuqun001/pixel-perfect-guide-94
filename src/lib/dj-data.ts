@@ -304,7 +304,7 @@ export const bases: Base[] = [
   {
     id: "b4",
     hospital: "四川大学华西医院 · 肿瘤微创中心",
-    intro: "覆盖西南地区的区域培训中心，年开台量与带教场次居region前列。",
+    intro: "覆盖西南地区的区域培训中心，年开台量与带教场次居西南地区前列。",
     trained: 254,
     next: "成都站 10.12",
     region: "西南",
@@ -322,7 +322,7 @@ export const baseDetail = {
   mentors: [
     { name: "李建国", title: "主任医师 · 介入治疗中心主任", tags: ["肝脏消融", "影像引导"] },
     { name: "王丽华", title: "副主任医师 · 带教组长", tags: ["肺部结节", "并发症处理"] },
-    { name: "周үн磊", title: "主治医师 · 实训导师", tags: ["设备操作", "路径规划"] },
+    { name: "周磊", title: "主治医师 · 实训导师", tags: ["设备操作", "路径规划"] },
   ],
   replays: [
     { title: "肝右叶邻近膈顶病灶冷冻消融实录", duration: "42:15", views: "1.2k" },
