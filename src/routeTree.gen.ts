@@ -11,7 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssessRouteImport } from './routes/assess'
-import { Route as PathRouteImport } from './routes/path'
+import { Route as PathIndexRouteImport } from './routes/path.index'
 import { Route as PathStageRouteImport } from './routes/path.$stage'
 
 const IndexRoute = IndexRouteImport.update({
@@ -24,48 +24,49 @@ const AssessRoute = AssessRouteImport.update({
   path: '/assess',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PathRoute = PathRouteImport.update({
-  id: '/path',
-  path: '/path',
+const PathIndexRoute = PathIndexRouteImport.update({
+  id: '/path/',
+  path: '/path/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PathStageRoute = PathStageRouteImport.update({
-  id: '/$stage',
-  path: '/$stage',
-  getParentRoute: () => PathRoute,
+  id: '/path/$stage',
+  path: '/path/$stage',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assess': typeof AssessRoute
-  '/path': typeof PathRouteWithChildren
   '/path/$stage': typeof PathStageRoute
+  '/path/': typeof PathIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assess': typeof AssessRoute
-  '/path': typeof PathRouteWithChildren
   '/path/$stage': typeof PathStageRoute
+  '/path': typeof PathIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/assess': typeof AssessRoute
-  '/path': typeof PathRouteWithChildren
   '/path/$stage': typeof PathStageRoute
+  '/path/': typeof PathIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assess' | '/path' | '/path/$stage'
+  fullPaths: '/' | '/assess' | '/path/$stage' | '/path/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assess' | '/path' | '/path/$stage'
-  id: '__root__' | '/' | '/assess' | '/path' | '/path/$stage'
+  to: '/' | '/assess' | '/path/$stage' | '/path'
+  id: '__root__' | '/' | '/assess' | '/path/$stage' | '/path/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssessRoute: typeof AssessRoute
-  PathRoute: typeof PathRouteWithChildren
+  PathStageRoute: typeof PathStageRoute
+  PathIndexRoute: typeof PathIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -84,37 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssessRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/path': {
-      id: '/path'
+    '/path/': {
+      id: '/path/'
       path: '/path'
-      fullPath: '/path'
-      preLoaderRoute: typeof PathRouteImport
+      fullPath: '/path/'
+      preLoaderRoute: typeof PathIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/path/$stage': {
       id: '/path/$stage'
-      path: '/$stage'
+      path: '/path/$stage'
       fullPath: '/path/$stage'
       preLoaderRoute: typeof PathStageRouteImport
-      parentRoute: typeof PathRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface PathRouteChildren {
-  PathStageRoute: typeof PathStageRoute
-}
-
-const PathRouteChildren: PathRouteChildren = {
-  PathStageRoute: PathStageRoute,
-}
-
-const PathRouteWithChildren = PathRoute._addFileChildren(PathRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssessRoute: AssessRoute,
-  PathRoute: PathRouteWithChildren,
+  PathStageRoute: PathStageRoute,
+  PathIndexRoute: PathIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
