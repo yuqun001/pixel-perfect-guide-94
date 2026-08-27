@@ -17,6 +17,7 @@ import { Route as MedalsRouteImport } from './routes/medals'
 import { Route as BasesIndexRouteImport } from './routes/bases.index'
 import { Route as BasesBaseIdRouteImport } from './routes/bases.$baseId'
 import { Route as CirclesIndexRouteImport } from './routes/circles.index'
+import { Route as CirclesCircleIdRouteImport } from './routes/circles.$circleId'
 import { Route as CourseCourseIdRouteImport } from './routes/course.$courseId'
 import { Route as PathIndexRouteImport } from './routes/path.index'
 import { Route as PathStageRouteImport } from './routes/path.$stage'
@@ -61,6 +62,11 @@ const CirclesIndexRoute = CirclesIndexRouteImport.update({
   path: '/circles/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CirclesCircleIdRoute = CirclesCircleIdRouteImport.update({
+  id: '/circles/$circleId',
+  path: '/circles/$circleId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CourseCourseIdRoute = CourseCourseIdRouteImport.update({
   id: '/course/$courseId',
   path: '/course/$courseId',
@@ -84,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/enroll': typeof EnrollRoute
   '/medals': typeof MedalsRoute
   '/bases/$baseId': typeof BasesBaseIdRoute
+  '/circles/$circleId': typeof CirclesCircleIdRoute
   '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
   '/bases/': typeof BasesIndexRoute
@@ -97,6 +104,7 @@ export interface FileRoutesByTo {
   '/enroll': typeof EnrollRoute
   '/medals': typeof MedalsRoute
   '/bases/$baseId': typeof BasesBaseIdRoute
+  '/circles/$circleId': typeof CirclesCircleIdRoute
   '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
   '/bases': typeof BasesIndexRoute
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/enroll': typeof EnrollRoute
   '/medals': typeof MedalsRoute
   '/bases/$baseId': typeof BasesBaseIdRoute
+  '/circles/$circleId': typeof CirclesCircleIdRoute
   '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
   '/bases/': typeof BasesIndexRoute
@@ -126,6 +135,7 @@ export interface FileRouteTypes {
     | '/enroll'
     | '/medals'
     | '/bases/$baseId'
+    | '/circles/$circleId'
     | '/course/$courseId'
     | '/path/$stage'
     | '/bases/'
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/enroll'
     | '/medals'
     | '/bases/$baseId'
+    | '/circles/$circleId'
     | '/course/$courseId'
     | '/path/$stage'
     | '/bases'
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/enroll'
     | '/medals'
     | '/bases/$baseId'
+    | '/circles/$circleId'
     | '/course/$courseId'
     | '/path/$stage'
     | '/bases/'
@@ -166,6 +178,7 @@ export interface RootRouteChildren {
   EnrollRoute: typeof EnrollRoute
   MedalsRoute: typeof MedalsRoute
   BasesBaseIdRoute: typeof BasesBaseIdRoute
+  CirclesCircleIdRoute: typeof CirclesCircleIdRoute
   CourseCourseIdRoute: typeof CourseCourseIdRoute
   PathStageRoute: typeof PathStageRoute
   BasesIndexRoute: typeof BasesIndexRoute
@@ -231,6 +244,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CirclesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/circles/$circleId': {
+      id: '/circles/$circleId'
+      path: '/circles/$circleId'
+      fullPath: '/circles/$circleId'
+      preLoaderRoute: typeof CirclesCircleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/course/$courseId': {
       id: '/course/$courseId'
       path: '/course/$courseId'
@@ -262,6 +282,7 @@ const rootRouteChildren: RootRouteChildren = {
   EnrollRoute: EnrollRoute,
   MedalsRoute: MedalsRoute,
   BasesBaseIdRoute: BasesBaseIdRoute,
+  CirclesCircleIdRoute: CirclesCircleIdRoute,
   CourseCourseIdRoute: CourseCourseIdRoute,
   PathStageRoute: PathStageRoute,
   BasesIndexRoute: BasesIndexRoute,
