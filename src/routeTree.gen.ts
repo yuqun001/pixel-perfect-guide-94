@@ -16,6 +16,7 @@ import { Route as EnrollRouteImport } from './routes/enroll'
 import { Route as MedalsRouteImport } from './routes/medals'
 import { Route as BasesIndexRouteImport } from './routes/bases.index'
 import { Route as BasesBaseIdRouteImport } from './routes/bases.$baseId'
+import { Route as CirclesIndexRouteImport } from './routes/circles.index'
 import { Route as CourseCourseIdRouteImport } from './routes/course.$courseId'
 import { Route as PathIndexRouteImport } from './routes/path.index'
 import { Route as PathStageRouteImport } from './routes/path.$stage'
@@ -55,6 +56,11 @@ const BasesBaseIdRoute = BasesBaseIdRouteImport.update({
   path: '/bases/$baseId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CirclesIndexRoute = CirclesIndexRouteImport.update({
+  id: '/circles/',
+  path: '/circles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CourseCourseIdRoute = CourseCourseIdRouteImport.update({
   id: '/course/$courseId',
   path: '/course/$courseId',
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
   '/bases/': typeof BasesIndexRoute
+  '/circles/': typeof CirclesIndexRoute
   '/path/': typeof PathIndexRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
   '/bases': typeof BasesIndexRoute
+  '/circles': typeof CirclesIndexRoute
   '/path': typeof PathIndexRoute
 }
 export interface FileRoutesById {
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
   '/bases/': typeof BasesIndexRoute
+  '/circles/': typeof CirclesIndexRoute
   '/path/': typeof PathIndexRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/course/$courseId'
     | '/path/$stage'
     | '/bases/'
+    | '/circles/'
     | '/path/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/course/$courseId'
     | '/path/$stage'
     | '/bases'
+    | '/circles'
     | '/path'
   id:
     | '__root__'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/course/$courseId'
     | '/path/$stage'
     | '/bases/'
+    | '/circles/'
     | '/path/'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +169,7 @@ export interface RootRouteChildren {
   CourseCourseIdRoute: typeof CourseCourseIdRoute
   PathStageRoute: typeof PathStageRoute
   BasesIndexRoute: typeof BasesIndexRoute
+  CirclesIndexRoute: typeof CirclesIndexRoute
   PathIndexRoute: typeof PathIndexRoute
 }
 
@@ -211,6 +224,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BasesBaseIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/circles/': {
+      id: '/circles/'
+      path: '/circles'
+      fullPath: '/circles/'
+      preLoaderRoute: typeof CirclesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/course/$courseId': {
       id: '/course/$courseId'
       path: '/course/$courseId'
@@ -245,6 +265,7 @@ const rootRouteChildren: RootRouteChildren = {
   CourseCourseIdRoute: CourseCourseIdRoute,
   PathStageRoute: PathStageRoute,
   BasesIndexRoute: BasesIndexRoute,
+  CirclesIndexRoute: CirclesIndexRoute,
   PathIndexRoute: PathIndexRoute,
 }
 export const routeTree = rootRouteImport
