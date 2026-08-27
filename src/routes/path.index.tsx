@@ -4,7 +4,7 @@ import { PageHeader, Screen, SectionTitle, Bar, Tag } from "@/components/dj/Shel
 import { CourseCard } from "@/components/dj/CourseCard";
 import { courses, stages } from "@/lib/dj-data";
 
-export const Route = createFileRoute("/path")({
+export const Route = createFileRoute("/path/")({
   head: () => ({
     meta: [
       { title: "三阶段学习路径 | 冻见 · 冷冻消融专区" },

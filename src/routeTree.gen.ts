@@ -11,7 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssessRouteImport } from './routes/assess'
-import { Route as PathRouteImport } from './routes/path'
+import { Route as CaseSubmitRouteImport } from './routes/case-submit'
+import { Route as EnrollRouteImport } from './routes/enroll'
+import { Route as MedalsRouteImport } from './routes/medals'
+import { Route as BasesIndexRouteImport } from './routes/bases.index'
+import { Route as BasesBaseIdRouteImport } from './routes/bases.$baseId'
+import { Route as CirclesIndexRouteImport } from './routes/circles.index'
+import { Route as CirclesCircleIdRouteImport } from './routes/circles.$circleId'
+import { Route as CourseCourseIdRouteImport } from './routes/course.$courseId'
+import { Route as PathIndexRouteImport } from './routes/path.index'
 import { Route as PathStageRouteImport } from './routes/path.$stage'
 
 const IndexRoute = IndexRouteImport.update({
@@ -24,48 +32,158 @@ const AssessRoute = AssessRouteImport.update({
   path: '/assess',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PathRoute = PathRouteImport.update({
-  id: '/path',
-  path: '/path',
+const CaseSubmitRoute = CaseSubmitRouteImport.update({
+  id: '/case-submit',
+  path: '/case-submit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnrollRoute = EnrollRouteImport.update({
+  id: '/enroll',
+  path: '/enroll',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedalsRoute = MedalsRouteImport.update({
+  id: '/medals',
+  path: '/medals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BasesIndexRoute = BasesIndexRouteImport.update({
+  id: '/bases/',
+  path: '/bases/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BasesBaseIdRoute = BasesBaseIdRouteImport.update({
+  id: '/bases/$baseId',
+  path: '/bases/$baseId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CirclesIndexRoute = CirclesIndexRouteImport.update({
+  id: '/circles/',
+  path: '/circles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CirclesCircleIdRoute = CirclesCircleIdRouteImport.update({
+  id: '/circles/$circleId',
+  path: '/circles/$circleId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CourseCourseIdRoute = CourseCourseIdRouteImport.update({
+  id: '/course/$courseId',
+  path: '/course/$courseId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PathIndexRoute = PathIndexRouteImport.update({
+  id: '/path/',
+  path: '/path/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PathStageRoute = PathStageRouteImport.update({
-  id: '/$stage',
-  path: '/$stage',
-  getParentRoute: () => PathRoute,
+  id: '/path/$stage',
+  path: '/path/$stage',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assess': typeof AssessRoute
-  '/path': typeof PathRouteWithChildren
+  '/case-submit': typeof CaseSubmitRoute
+  '/enroll': typeof EnrollRoute
+  '/medals': typeof MedalsRoute
+  '/bases/$baseId': typeof BasesBaseIdRoute
+  '/circles/$circleId': typeof CirclesCircleIdRoute
+  '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
+  '/bases/': typeof BasesIndexRoute
+  '/circles/': typeof CirclesIndexRoute
+  '/path/': typeof PathIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assess': typeof AssessRoute
-  '/path': typeof PathRouteWithChildren
+  '/case-submit': typeof CaseSubmitRoute
+  '/enroll': typeof EnrollRoute
+  '/medals': typeof MedalsRoute
+  '/bases/$baseId': typeof BasesBaseIdRoute
+  '/circles/$circleId': typeof CirclesCircleIdRoute
+  '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
+  '/bases': typeof BasesIndexRoute
+  '/circles': typeof CirclesIndexRoute
+  '/path': typeof PathIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/assess': typeof AssessRoute
-  '/path': typeof PathRouteWithChildren
+  '/case-submit': typeof CaseSubmitRoute
+  '/enroll': typeof EnrollRoute
+  '/medals': typeof MedalsRoute
+  '/bases/$baseId': typeof BasesBaseIdRoute
+  '/circles/$circleId': typeof CirclesCircleIdRoute
+  '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
+  '/bases/': typeof BasesIndexRoute
+  '/circles/': typeof CirclesIndexRoute
+  '/path/': typeof PathIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assess' | '/path' | '/path/$stage'
+  fullPaths:
+    | '/'
+    | '/assess'
+    | '/case-submit'
+    | '/enroll'
+    | '/medals'
+    | '/bases/$baseId'
+    | '/circles/$circleId'
+    | '/course/$courseId'
+    | '/path/$stage'
+    | '/bases/'
+    | '/circles/'
+    | '/path/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assess' | '/path' | '/path/$stage'
-  id: '__root__' | '/' | '/assess' | '/path' | '/path/$stage'
+  to:
+    | '/'
+    | '/assess'
+    | '/case-submit'
+    | '/enroll'
+    | '/medals'
+    | '/bases/$baseId'
+    | '/circles/$circleId'
+    | '/course/$courseId'
+    | '/path/$stage'
+    | '/bases'
+    | '/circles'
+    | '/path'
+  id:
+    | '__root__'
+    | '/'
+    | '/assess'
+    | '/case-submit'
+    | '/enroll'
+    | '/medals'
+    | '/bases/$baseId'
+    | '/circles/$circleId'
+    | '/course/$courseId'
+    | '/path/$stage'
+    | '/bases/'
+    | '/circles/'
+    | '/path/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssessRoute: typeof AssessRoute
-  PathRoute: typeof PathRouteWithChildren
+  CaseSubmitRoute: typeof CaseSubmitRoute
+  EnrollRoute: typeof EnrollRoute
+  MedalsRoute: typeof MedalsRoute
+  BasesBaseIdRoute: typeof BasesBaseIdRoute
+  CirclesCircleIdRoute: typeof CirclesCircleIdRoute
+  CourseCourseIdRoute: typeof CourseCourseIdRoute
+  PathStageRoute: typeof PathStageRoute
+  BasesIndexRoute: typeof BasesIndexRoute
+  CirclesIndexRoute: typeof CirclesIndexRoute
+  PathIndexRoute: typeof PathIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -84,37 +202,92 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AssessRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/path': {
-      id: '/path'
+    '/case-submit': {
+      id: '/case-submit'
+      path: '/case-submit'
+      fullPath: '/case-submit'
+      preLoaderRoute: typeof CaseSubmitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enroll': {
+      id: '/enroll'
+      path: '/enroll'
+      fullPath: '/enroll'
+      preLoaderRoute: typeof EnrollRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medals': {
+      id: '/medals'
+      path: '/medals'
+      fullPath: '/medals'
+      preLoaderRoute: typeof MedalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bases/': {
+      id: '/bases/'
+      path: '/bases'
+      fullPath: '/bases/'
+      preLoaderRoute: typeof BasesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bases/$baseId': {
+      id: '/bases/$baseId'
+      path: '/bases/$baseId'
+      fullPath: '/bases/$baseId'
+      preLoaderRoute: typeof BasesBaseIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/circles/': {
+      id: '/circles/'
+      path: '/circles'
+      fullPath: '/circles/'
+      preLoaderRoute: typeof CirclesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/circles/$circleId': {
+      id: '/circles/$circleId'
+      path: '/circles/$circleId'
+      fullPath: '/circles/$circleId'
+      preLoaderRoute: typeof CirclesCircleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/course/$courseId': {
+      id: '/course/$courseId'
+      path: '/course/$courseId'
+      fullPath: '/course/$courseId'
+      preLoaderRoute: typeof CourseCourseIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/path/': {
+      id: '/path/'
       path: '/path'
-      fullPath: '/path'
-      preLoaderRoute: typeof PathRouteImport
+      fullPath: '/path/'
+      preLoaderRoute: typeof PathIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/path/$stage': {
       id: '/path/$stage'
-      path: '/$stage'
+      path: '/path/$stage'
       fullPath: '/path/$stage'
       preLoaderRoute: typeof PathStageRouteImport
-      parentRoute: typeof PathRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface PathRouteChildren {
-  PathStageRoute: typeof PathStageRoute
-}
-
-const PathRouteChildren: PathRouteChildren = {
-  PathStageRoute: PathStageRoute,
-}
-
-const PathRouteWithChildren = PathRoute._addFileChildren(PathRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssessRoute: AssessRoute,
-  PathRoute: PathRouteWithChildren,
+  CaseSubmitRoute: CaseSubmitRoute,
+  EnrollRoute: EnrollRoute,
+  MedalsRoute: MedalsRoute,
+  BasesBaseIdRoute: BasesBaseIdRoute,
+  CirclesCircleIdRoute: CirclesCircleIdRoute,
+  CourseCourseIdRoute: CourseCourseIdRoute,
+  PathStageRoute: PathStageRoute,
+  BasesIndexRoute: BasesIndexRoute,
+  CirclesIndexRoute: CirclesIndexRoute,
+  PathIndexRoute: PathIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
