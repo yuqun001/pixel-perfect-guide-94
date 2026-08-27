@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssessRouteImport } from './routes/assess'
+import { Route as CaseSubmitRouteImport } from './routes/case-submit'
 import { Route as EnrollRouteImport } from './routes/enroll'
 import { Route as MedalsRouteImport } from './routes/medals'
 import { Route as BasesIndexRouteImport } from './routes/bases.index'
@@ -27,6 +28,11 @@ const IndexRoute = IndexRouteImport.update({
 const AssessRoute = AssessRouteImport.update({
   id: '/assess',
   path: '/assess',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CaseSubmitRoute = CaseSubmitRouteImport.update({
+  id: '/case-submit',
+  path: '/case-submit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnrollRoute = EnrollRouteImport.update({
@@ -68,6 +74,7 @@ const PathStageRoute = PathStageRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assess': typeof AssessRoute
+  '/case-submit': typeof CaseSubmitRoute
   '/enroll': typeof EnrollRoute
   '/medals': typeof MedalsRoute
   '/bases/$baseId': typeof BasesBaseIdRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assess': typeof AssessRoute
+  '/case-submit': typeof CaseSubmitRoute
   '/enroll': typeof EnrollRoute
   '/medals': typeof MedalsRoute
   '/bases/$baseId': typeof BasesBaseIdRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/assess': typeof AssessRoute
+  '/case-submit': typeof CaseSubmitRoute
   '/enroll': typeof EnrollRoute
   '/medals': typeof MedalsRoute
   '/bases/$baseId': typeof BasesBaseIdRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/assess'
+    | '/case-submit'
     | '/enroll'
     | '/medals'
     | '/bases/$baseId'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/assess'
+    | '/case-submit'
     | '/enroll'
     | '/medals'
     | '/bases/$baseId'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/assess'
+    | '/case-submit'
     | '/enroll'
     | '/medals'
     | '/bases/$baseId'
@@ -138,6 +150,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssessRoute: typeof AssessRoute
+  CaseSubmitRoute: typeof CaseSubmitRoute
   EnrollRoute: typeof EnrollRoute
   MedalsRoute: typeof MedalsRoute
   BasesBaseIdRoute: typeof BasesBaseIdRoute
@@ -161,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/assess'
       fullPath: '/assess'
       preLoaderRoute: typeof AssessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-submit': {
+      id: '/case-submit'
+      path: '/case-submit'
+      fullPath: '/case-submit'
+      preLoaderRoute: typeof CaseSubmitRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/enroll': {
@@ -218,6 +238,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssessRoute: AssessRoute,
+  CaseSubmitRoute: CaseSubmitRoute,
   EnrollRoute: EnrollRoute,
   MedalsRoute: MedalsRoute,
   BasesBaseIdRoute: BasesBaseIdRoute,
