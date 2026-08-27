@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssessRouteImport } from './routes/assess'
 import { Route as MedalsRouteImport } from './routes/medals'
+import { Route as BasesIndexRouteImport } from './routes/bases.index'
 import { Route as CourseCourseIdRouteImport } from './routes/course.$courseId'
 import { Route as PathIndexRouteImport } from './routes/path.index'
 import { Route as PathStageRouteImport } from './routes/path.$stage'
@@ -29,6 +30,11 @@ const AssessRoute = AssessRouteImport.update({
 const MedalsRoute = MedalsRouteImport.update({
   id: '/medals',
   path: '/medals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BasesIndexRoute = BasesIndexRouteImport.update({
+  id: '/bases/',
+  path: '/bases/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CourseCourseIdRoute = CourseCourseIdRouteImport.update({
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/medals': typeof MedalsRoute
   '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
+  '/bases/': typeof BasesIndexRoute
   '/path/': typeof PathIndexRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/medals': typeof MedalsRoute
   '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
+  '/bases': typeof BasesIndexRoute
   '/path': typeof PathIndexRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/medals': typeof MedalsRoute
   '/course/$courseId': typeof CourseCourseIdRoute
   '/path/$stage': typeof PathStageRoute
+  '/bases/': typeof BasesIndexRoute
   '/path/': typeof PathIndexRoute
 }
 export interface FileRouteTypes {
@@ -80,10 +89,17 @@ export interface FileRouteTypes {
     | '/medals'
     | '/course/$courseId'
     | '/path/$stage'
+    | '/bases/'
     | '/path/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/assess' | '/medals' | '/course/$courseId' | '/path/$stage' | '/path'
+    | '/'
+    | '/assess'
+    | '/medals'
+    | '/course/$courseId'
+    | '/path/$stage'
+    | '/bases'
+    | '/path'
   id:
     | '__root__'
     | '/'
@@ -91,6 +107,7 @@ export interface FileRouteTypes {
     | '/medals'
     | '/course/$courseId'
     | '/path/$stage'
+    | '/bases/'
     | '/path/'
   fileRoutesById: FileRoutesById
 }
@@ -100,6 +117,7 @@ export interface RootRouteChildren {
   MedalsRoute: typeof MedalsRoute
   CourseCourseIdRoute: typeof CourseCourseIdRoute
   PathStageRoute: typeof PathStageRoute
+  BasesIndexRoute: typeof BasesIndexRoute
   PathIndexRoute: typeof PathIndexRoute
 }
 
@@ -124,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/medals'
       fullPath: '/medals'
       preLoaderRoute: typeof MedalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bases/': {
+      id: '/bases/'
+      path: '/bases'
+      fullPath: '/bases/'
+      preLoaderRoute: typeof BasesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/course/$courseId': {
@@ -156,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   MedalsRoute: MedalsRoute,
   CourseCourseIdRoute: CourseCourseIdRoute,
   PathStageRoute: PathStageRoute,
+  BasesIndexRoute: BasesIndexRoute,
   PathIndexRoute: PathIndexRoute,
 }
 export const routeTree = rootRouteImport
