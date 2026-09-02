@@ -21,6 +21,8 @@ export const Route = createFileRoute("/circles/$circleId")({
 function CircleDetail() {
   const { circleId } = Route.useParams();
   const c = circles.find((x) => x.id === circleId) ?? circles[0];
+  if (!c) return null;
+
   const [added, setAdded] = useState(false);
 
   return (
