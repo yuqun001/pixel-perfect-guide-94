@@ -20,6 +20,8 @@ export const Route = createFileRoute("/bases/$baseId")({
 function BaseDetail() {
   const { baseId } = Route.useParams();
   const b = bases.find((x) => x.id === baseId) ?? bases[0];
+  if (!b) return null;
+
 
   return (
     <Screen>
