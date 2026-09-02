@@ -348,29 +348,30 @@ export const baseDetail = {
 export const circles = [
   {
     id: "lung",
-    name: "肺部冷冻圈",
-    owner: "301医院 · 张伟主任医师",
-    members: 2860,
-    weekly: 128,
+    name: "肺结节冷冻消融圈",
+    owner: "牛立志主任医师",
+    members: 3260,
+    weekly: 156,
     emoji: "肺",
   },
   {
     id: "liver",
-    name: "肝脏冷冻圈",
-    owner: "中山医院 · 李建国主任医师",
-    members: 2145,
-    weekly: 96,
+    name: "肝癌冷冻消融圈",
+    owner: "张凯主任医师",
+    members: 2180,
+    weekly: 112,
     emoji: "肝",
   },
   {
-    id: "kidney",
-    name: "肾癌冷冻圈",
-    owner: "北大医院 · 陈志强主任医师",
-    members: 1372,
-    weekly: 64,
-    emoji: "肾",
+    id: "classmate",
+    name: "301冷冻消融大师班同学会",
+    owner: "肖越勇主任医师",
+    members: 645,
+    weekly: 48,
+    emoji: "班",
   },
 ];
+
 
 export const circleContent = {
   cases: [
