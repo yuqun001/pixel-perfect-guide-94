@@ -89,6 +89,8 @@ function Assess() {
   }
 
   const q = quizQuestions[idx];
+  if (!q) return null;
+
   return (
     <Screen>
       <div className="-mx-4 -mt-4 mb-4">
