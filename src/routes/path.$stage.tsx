@@ -21,6 +21,8 @@ function StageDetail() {
   const { stage } = Route.useParams();
   const key = stage as StageKey;
   const s = stages.find((x) => x.key === key) ?? stages[0];
+  if (!s) return null;
+
   const list = courses.filter((c) => c.stage === s.key);
 
   return (

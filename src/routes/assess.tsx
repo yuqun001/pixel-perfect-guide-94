@@ -23,9 +23,10 @@ function Assess() {
   const [done, setDone] = useState(false);
 
   const score = answers.reduce(
-    (acc, a, i) => acc + (a === quizQuestions[i].answer ? 20 : 0),
+    (acc, a, i) => acc + (a === quizQuestions[i]?.answer ? 20 : 0),
     0,
   );
+
 
   const pick = (i: number) => {
     const next = [...answers];
@@ -88,6 +89,8 @@ function Assess() {
   }
 
   const q = quizQuestions[idx];
+  if (!q) return null;
+
   return (
     <Screen>
       <div className="-mx-4 -mt-4 mb-4">

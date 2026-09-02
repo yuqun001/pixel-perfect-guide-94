@@ -152,12 +152,13 @@ function DongjianHome() {
             <span className="bg-brand flex h-14 w-14 items-center justify-center rounded-full text-lg font-bold text-primary-foreground">
               {c.emoji}
             </span>
-            <span className="text-[12px] text-foreground">{c.name}</span>
+            <span className="text-center text-[12px] leading-tight text-foreground">{c.name}</span>
             <span className="text-[10px] text-muted-foreground">
               {c.members.toLocaleString()} 成员
             </span>
           </Link>
         ))}
+
       </div>
 
       <SectionTitle title="本周热门病例" />

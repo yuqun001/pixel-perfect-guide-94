@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssessRouteImport } from './routes/assess'
 import { Route as CaseSubmitRouteImport } from './routes/case-submit'
 import { Route as EnrollRouteImport } from './routes/enroll'
+import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as MedalsRouteImport } from './routes/medals'
 import { Route as BasesIndexRouteImport } from './routes/bases.index'
 import { Route as BasesBaseIdRouteImport } from './routes/bases.$baseId'
@@ -40,6 +41,11 @@ const CaseSubmitRoute = CaseSubmitRouteImport.update({
 const EnrollRoute = EnrollRouteImport.update({
   id: '/enroll',
   path: '/enroll',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JourneyRoute = JourneyRouteImport.update({
+  id: '/journey',
+  path: '/journey',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MedalsRoute = MedalsRouteImport.update({
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/assess': typeof AssessRoute
   '/case-submit': typeof CaseSubmitRoute
   '/enroll': typeof EnrollRoute
+  '/journey': typeof JourneyRoute
   '/medals': typeof MedalsRoute
   '/bases/$baseId': typeof BasesBaseIdRoute
   '/circles/$circleId': typeof CirclesCircleIdRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/assess': typeof AssessRoute
   '/case-submit': typeof CaseSubmitRoute
   '/enroll': typeof EnrollRoute
+  '/journey': typeof JourneyRoute
   '/medals': typeof MedalsRoute
   '/bases/$baseId': typeof BasesBaseIdRoute
   '/circles/$circleId': typeof CirclesCircleIdRoute
@@ -117,6 +125,7 @@ export interface FileRoutesById {
   '/assess': typeof AssessRoute
   '/case-submit': typeof CaseSubmitRoute
   '/enroll': typeof EnrollRoute
+  '/journey': typeof JourneyRoute
   '/medals': typeof MedalsRoute
   '/bases/$baseId': typeof BasesBaseIdRoute
   '/circles/$circleId': typeof CirclesCircleIdRoute
@@ -133,6 +142,7 @@ export interface FileRouteTypes {
     | '/assess'
     | '/case-submit'
     | '/enroll'
+    | '/journey'
     | '/medals'
     | '/bases/$baseId'
     | '/circles/$circleId'
@@ -147,6 +157,7 @@ export interface FileRouteTypes {
     | '/assess'
     | '/case-submit'
     | '/enroll'
+    | '/journey'
     | '/medals'
     | '/bases/$baseId'
     | '/circles/$circleId'
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
     | '/assess'
     | '/case-submit'
     | '/enroll'
+    | '/journey'
     | '/medals'
     | '/bases/$baseId'
     | '/circles/$circleId'
@@ -176,6 +188,7 @@ export interface RootRouteChildren {
   AssessRoute: typeof AssessRoute
   CaseSubmitRoute: typeof CaseSubmitRoute
   EnrollRoute: typeof EnrollRoute
+  JourneyRoute: typeof JourneyRoute
   MedalsRoute: typeof MedalsRoute
   BasesBaseIdRoute: typeof BasesBaseIdRoute
   CirclesCircleIdRoute: typeof CirclesCircleIdRoute
@@ -214,6 +227,13 @@ declare module '@tanstack/react-router' {
       path: '/enroll'
       fullPath: '/enroll'
       preLoaderRoute: typeof EnrollRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journey': {
+      id: '/journey'
+      path: '/journey'
+      fullPath: '/journey'
+      preLoaderRoute: typeof JourneyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/medals': {
@@ -280,6 +300,7 @@ const rootRouteChildren: RootRouteChildren = {
   AssessRoute: AssessRoute,
   CaseSubmitRoute: CaseSubmitRoute,
   EnrollRoute: EnrollRoute,
+  JourneyRoute: JourneyRoute,
   MedalsRoute: MedalsRoute,
   BasesBaseIdRoute: BasesBaseIdRoute,
   CirclesCircleIdRoute: CirclesCircleIdRoute,
