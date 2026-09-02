@@ -32,15 +32,14 @@ function CircleDetail() {
       <section className="bg-brand rounded-2xl p-5 text-primary-foreground">
         <div className="flex items-center gap-3.5">
           <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary-foreground/20 text-lg font-bold">
-            {c.owner.split("·")[1]?.trim().slice(0, 1) ?? "医"}
+            {c.owner.slice(0, 1)}
           </span>
           <div>
-            <p className="text-[15px] font-semibold">{c.owner.split("·")[1]?.trim()}</p>
-            <p className="mt-0.5 text-[11px] opacity-85">
-              圈主 · {c.owner.split("·")[0]?.trim()}
-            </p>
+            <p className="text-[15px] font-semibold">{c.owner}</p>
+            <p className="mt-0.5 text-[11px] opacity-85">圈主 · {c.name}</p>
           </div>
         </div>
+
         <div className="mt-4 flex gap-8">
           <div>
             <p className="text-xl font-bold">{c.members.toLocaleString()}</p>
