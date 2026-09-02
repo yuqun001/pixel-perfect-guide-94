@@ -20,6 +20,8 @@ export const Route = createFileRoute("/course/$courseId")({
 function CoursePage() {
   const { courseId } = Route.useParams();
   const c = courses.find((x) => x.id === courseId) ?? courses[0];
+  if (!c) return null;
+
 
   return (
     <Screen>
