@@ -21,8 +21,9 @@ export const Route = createFileRoute("/case-submit")({
 function CaseSubmit() {
   const [done, setDone] = useState(false);
   const [name, setName] = useState("");
-  const [base, setBase] = useState(bases[0].hospital);
-  const [klass, setKlass] = useState(baseDetail.classes[0].name);
+  const [base, setBase] = useState(bases[0]?.hospital ?? "");
+  const [klass, setKlass] = useState(baseDetail.classes[0]?.name ?? "");
+
   const [file, setFile] = useState<string | null>(null);
 
   if (done) {
