@@ -77,11 +77,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "冻见 · 冷冻消融专区" },
+      { name: "description", content: "冻见冷冻消融专区：三阶学习路径、能力自测、培训基地、学习圈与病例通道。" },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "冻见 · 冷冻消融专区" },
+      { property: "og:description", content: "冻见新境 · 消融有道：三阶学习路径、培训基地与学习圈一站式医学教育专区。" },
+
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
